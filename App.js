@@ -8,7 +8,14 @@ import { UserProfile } from './components/UserProfile';
 import { tokenCache } from './utils/cache';
 
 
-const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Zmx1ZW50LWdpYmJvbi0yNy5jbGVyay5hY2NvdW50cy5kZXYk';
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+if (!publishableKey) {
+  throw new Error(
+    'Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY environment variable. ' +
+    'Please add your Clerk publishable key to the .env file.'
+  );
+}
 
 function App() {
   return (
